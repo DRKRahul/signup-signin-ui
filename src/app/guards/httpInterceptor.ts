@@ -108,9 +108,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
   isAccessTokenExpiredOrMissing() {
     if (!this.accessToken) return true
-    console.log(this.accessToken,"=========")
     const helper = new JwtHelperService();
-    console.log(helper.isTokenExpired(this.accessToken), "is expired");
     return helper.isTokenExpired(this.accessToken);
   }
 }

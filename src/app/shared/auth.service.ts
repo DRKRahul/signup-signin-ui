@@ -19,11 +19,9 @@ export class AuthService {
 
   getLoginState() {
     const rememberMe = localStorage.getItem('rememberMe');
-    console.log('At hereeeeee===========',rememberMe);
     let access;
     let refresh;
     if(rememberMe){
-      console.log('At here===========');
       access = localStorage.getItem('access');
       refresh = localStorage.getItem('refresh');
     } else{
@@ -31,7 +29,6 @@ export class AuthService {
       refresh = sessionStorage.getItem('refresh');
     }
    
-    console.log(access && refresh,"------true--tokes");
     if (access && refresh) {
       return true;
     }

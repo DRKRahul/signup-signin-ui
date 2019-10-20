@@ -20,16 +20,15 @@ import {
       this.loggedIn = observableOf(this.authService.getLoginState());
       this.loggedIn.subscribe(loginStatus => {
         if (!loginStatus) {
-          this.router.navigateByUrl('/index')
+          this.router.navigateByUrl('/index');
           return false;
-        }
+        } 
+        return true;
       });
     }
   
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
       this.url = state.url;
-      console.log("========",this.url);
-      console.log("========",this.loggedIn);
       return this.loggedIn;
     }
   }

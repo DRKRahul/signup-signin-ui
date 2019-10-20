@@ -25,7 +25,7 @@ import { JwtInterceptor } from './guards/httpInterceptor'
     RouterModule.forRoot([
       {
         path: '',
-        redirectTo: '/index', 
+        redirectTo: '/index',
         pathMatch: 'full'
       },
       {
@@ -43,11 +43,7 @@ import { JwtInterceptor } from './guards/httpInterceptor'
     provide: HTTP_INTERCEPTORS,
     useClass: JwtInterceptor,
     multi: true
-  },
-  {
-    provide: AuthGuard,
-    useValue: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => true
-  }],
+  }, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

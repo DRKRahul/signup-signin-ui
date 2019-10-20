@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.checkStatus();
     this.createForms();
   }
 
@@ -76,5 +77,13 @@ export class LoginComponent implements OnInit {
       alert(errRes.error.message);
       this.loginForm.reset();
     });
+  }
+
+  checkStatus(){
+    const status = this.authService.getLoginState();
+    if(status){
+      this.router.navigateByUrl('/grid');
+    }
+    return;
   }
 }
