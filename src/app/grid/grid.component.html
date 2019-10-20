@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10">
+      <h2 style=text-align:center;color:blue><strong>RADAG</strong></h2>
+    </div>
+    <div class="col-sm-2">
+      <br><button class="btn btn-primary" (click)="onLogout()">Logout</button>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>DOB</th>
+          <th>Email</th>
+          <th>Location</th>
+          <th>Hobbies</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of usersData">
+          <td>{{user.name}}</td>
+          <td>{{user.gender}}</td>
+          <td>{{user.dob| date:'mediumDate'}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.location}}</td>
+          <td>{{user.hobbies}}</td>
+          <td><input type="button" data-toggle="modal" data-target="#myModal" value="Edit" class="btn btn-primary"
+              (click)="patchUpdateForm(user)"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit User Details</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <form class="form-horizontal" [formGroup]="updateForm">
+            <div class="from-group">
+              <div class="col-sm-12">
+                <label>Name</label>
+                <input type="text" class="form-control" name="name" formControlName="name">
+              </div>
+            </div>
+            <div class="from-group">
+              <div class="col-sm-12">
+                <label>Gender</label>
+                <select class="form-control" name="gender" formControlName="gender">
+                  <option value="">Select</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+            </div>
+            <div class="from-group">
+              <div class="col-sm-12">
+                <label>D.O.B</label>
+                <input type="date" class="form-control" name="dob" formControlName="dob">
+              </div>
+            </div>
+            <div class="from-group">
+              <div class="col-sm-12">
+                <label>Email</label>
+                <input type="email" class="form-control" name="email" formControlName="email" readonly>
+              </div>
+            </div>
+            <div class="from-group">
+              <div class="col-sm-12">
+                <label>Location</label>
+                <input type="text" class="form-control" name="location" formControlName="location">
+              </div>
+            </div>
+            <div class="from-group">
+              <div class="col-sm-12">
+                <label>Hobbies</label>
+                <textarea class="form-control" name="hobbies" formControlName="hobbies"></textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" [disabled]="updateForm.invalid"
+          (click)="updateUserDetails()" data-dismiss="modal">Save</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
